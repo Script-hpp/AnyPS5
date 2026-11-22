@@ -156,7 +156,7 @@ struct SpirvEmitterState {
     std::uint32_t storageBufferU8Variable = 0;
     std::vector<std::uint32_t> memoryByteOffsets;
     std::map<std::array<std::uint32_t, 6>, std::uint32_t> formattedBufferFunctions;
-    std::map<std::array<std::uint32_t, 6>, std::uint32_t> formattedGpuBufferFunctions;
+    std::map<std::array<std::uint32_t, 7>, std::uint32_t> formattedGpuBufferFunctions;
     struct FaultCheckEntry {
         const IrBlock* block = nullptr;
         std::uint32_t guard = 0;
@@ -381,6 +381,7 @@ struct SpirvValueEmitContext {
 
     SpirvEmitterState& state;
     SpirvDefinitionTable definitions;
+    std::map<std::pair<const IrBlock*, std::uint32_t>, std::array<std::uint32_t, 3>> formattedLoadWords;
     std::uint32_t scratchU32Variable = 0;
     SpirvValueEmitContext* otherHalf = nullptr;
     std::uint32_t half = 0;
